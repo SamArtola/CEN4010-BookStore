@@ -25,13 +25,19 @@ o Response Data: JSON User object.
  
 o Logic: Given the username as a key lookup value and any other user field, update that user field with the
 new param value.
+
 o HTTP Request Type: PUT / PATCH
+
 o Parameters Sent: Username
+
 o Response Data: None
 
  Create Credit Card that belongs to a User
  
 o Logic: Given a user name and credit card details, create a credit card for that user.
+
 o HTTP Request Type: POST
+
 o Parameters Sent: User name, Credit Card Object
+
 Response Data: None
