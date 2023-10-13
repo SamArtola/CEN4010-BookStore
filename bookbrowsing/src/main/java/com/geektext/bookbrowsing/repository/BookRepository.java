@@ -1,11 +1,14 @@
 package com.geektext.bookbrowsing.repository;
 
-import com.geektext.bookbrowsing.model.Books;
+import com.geektext.bookbrowsing.model.Book;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
 
-public interface BookRepository extends MongoRepository<Books,String> {
-    public Books findByTitle(String title);
-    public List<Books> findByGenre(String genre);
+public interface BookRepository extends MongoRepository<Book,String> {
+    public Book findByTitle(String title);
+    public List<Book> findByGenresIn(List<String> genres);
+
+    List<Book> findByISBN(String ISBN);
+    public List<Book> findByPublisher(String publisher);
 }
