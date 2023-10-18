@@ -39,7 +39,24 @@ public class BookController {
         List<Book> books = bookService.getBooksByGenre(genre);
         return new ResponseEntity<>(books,HttpStatus.OK);
    }
+
+   @GetMapping("/TopSellers")
+    public ResponseEntity<List<Book>> getTop10Books(){
+        List<Book>books=bookService.getTop10BooksByCopiesSold();
+        return new ResponseEntity<>(books,HttpStatus.OK);
+   }
+
+    @GetMapping("/{Genre}/TopRated")
+    public ResponseEntity<List<Book>> getTopBooksByGenre(@PathVariable List<String> Genre){
+        List<Book> books = bookService.getTopBooksByGenre(Genre);
+        return new ResponseEntity<>(books,HttpStatus.OK);
+    }
+
     // @GetMapping("/TopSellers")
-    // @GetMapping("/{rating}")
+    @GetMapping("/Rating:{rating}")
+    public ResponseEntity<List<Book>> getBooksByRating(@PathVariable double rating){
+        List<Book> books = bookService.getBooksByRating(rating);
+        return new ResponseEntity<>(books,HttpStatus.OK);
+    }
 
 }

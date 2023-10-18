@@ -11,19 +11,21 @@ import java.util.List;
 public class Book {
     @Id
     private String id;
+    @Field("title")
     private String title;
+    @Field("author")
     private String author;
     private String ISBN;
     private int copiesSold;
+    @Field("genres")
     private List<String> genres;
     @Field("averageRating")
-    private double AVG_Rating;
+    private double AVGRating;
     private String description;
     private double price;
     @Field("yearPublished")
     private String yr_published;
     private String publisher;
-    private List<String> comments;
 
 
     //    private <A> authors;
@@ -32,27 +34,24 @@ public class Book {
 
     //    private <G> genres;
 
-    public Book(){
 
-    }
-
-    public Book(String id, String title, String author, int copiesSold, List<String> genres, double AVG_Rating, String description, double price, String yr_published, String publisher, List<String> comments){
+    public Book(String id, String ISBN,String title, String author, int copiesSold, List<String> genres, double AVGRating, String description, double price, String yr_published, String publisher){
         super();
         this.id=id;
         this.title=title;
         this.copiesSold=copiesSold;
         this.genres=genres;
         this.author=author;
-        this.AVG_Rating=AVG_Rating;
-        this.comments=comments;
+        this.AVGRating=AVGRating;
         this.description=description;
         this.price=price;
         this.publisher=publisher;
         this.yr_published=yr_published;
+        this.ISBN=ISBN;
     }
 
     public double getAVG_Rating() {
-        return AVG_Rating;
+        return AVGRating;
     }
 
     public double getPrice() {
@@ -61,10 +60,6 @@ public class Book {
 
     public int getCopiesSold() {
         return copiesSold;
-    }
-
-    public List<String> getComments() {
-        return comments;
     }
 
     public List<String> getGenres() {
@@ -96,11 +91,7 @@ public class Book {
     }
 
     public void setAVG_Rating(double AVG_Rating) {
-        this.AVG_Rating = AVG_Rating;
-    }
-
-    public void setComments(List<String> comments) {
-        this.comments = comments;
+        this.AVGRating = AVG_Rating;
     }
 
     public void setCopiesSold(int copiesSold) {
@@ -142,13 +133,4 @@ public class Book {
         this.author = author;
     }
 
-    @Override
-    public String toString(){
-        return "Book{" +
-                "id='" + id + '\'' +
-                ", ISBN='" + ISBN + '\'' +
-                ", publisher=" + publisher +
-                ", title='" + title + '\'' +
-                '}';
-    }
     }
