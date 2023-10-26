@@ -8,14 +8,15 @@ import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 
 @Document("book")
-@JsonIgnoreProperties(value = {"target", "source"})
+//@JsonIgnoreProperties(value = {"target", "source"})
 public class Book {
 
     @Id
     private String id;
 
     private Double AVG_Rating;
-//    private <A> authors;
+    @DocumentReference(lazy = true)
+    private Author author;
 //    private List<C> comments;
     private Integer copiesSoled;
     private String description;
@@ -24,7 +25,7 @@ public class Book {
     private Double price;
 
 //    @DocumentReference(lazy = true)
-    @DocumentReference
+    @DocumentReference(lazy = true)
     private Publisher publisher;
     private String title;
     private String yearPublished;
@@ -50,6 +51,14 @@ public class Book {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 
     public Double getAVG_Rating() {

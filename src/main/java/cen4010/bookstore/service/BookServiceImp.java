@@ -1,12 +1,14 @@
 package cen4010.bookstore.service;
 
 import cen4010.bookstore.exception.ResourceNotFoundException;
+import cen4010.bookstore.model.Author;
 import cen4010.bookstore.model.Book;
 import cen4010.bookstore.repo.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,5 +36,23 @@ public class BookServiceImp implements BookService{
         }
     }
 
+    @Override
+    public Book saveBook(Book book) {
+        return bookRepo.save(book);
+    }
 
+    @Override
+    public List<Book> getBooksByAuthor(Author author) {
+        return bookRepo.findBooksByAuthor(author);
+    }
+
+    @Override
+    public List<Book> getBooksByAuthorFullName(String firstName, String lastName) {
+        return bookRepo.findBooksByAuthorFirstNameAndAuthorLastName(firstName, lastName);
+    }
+
+    @Override
+    public List<Book> getBooksByAuthorId(String id) {
+        return bookRepo.findBooksByAuthorId(id);
+    }
 }

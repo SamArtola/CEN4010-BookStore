@@ -21,7 +21,7 @@ public class Publisher {
 
 //    @DocumentReference(lazy = true)
 //    @ReadOnlyProperty
-    @DocumentReference
+    @DocumentReference(lazy = true)
     private List<Book> books;
 
     public Publisher() {
