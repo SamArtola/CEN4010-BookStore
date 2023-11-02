@@ -1,6 +1,7 @@
 package cen4010.UserManagement.Controller;
 
 
+import cen4010.UserManagement.Model.CreditCard;
 import cen4010.UserManagement.Model.UserCreation;
 import cen4010.UserManagement.Repository.CreditCardRepo;
 import cen4010.UserManagement.Repository.UserRepo;
@@ -46,6 +47,12 @@ public class UserController {
         }
 
 
+    }
+    @PostMapping("/Create-credit-card")
+    public ResponseEntity<CreditCard> createCC(@RequestParam String username, @RequestParam String password,@RequestBody
+                                                                                                CreditCard creditCard){
+        CreditCard createdCard = userService.createCC(username,password, creditCard);
+         return new ResponseEntity<>(createdCard, HttpStatus.CREATED);
     }
 
 

@@ -62,14 +62,23 @@ public class ServiceImp implements UserService {
         if(user.isPresent()){
 
             UserCreation userOptional = user.get();
+            // set the user ID in the credit card
+           creditCard.setUserId(userOptional.getUserName());
 
+           // assign credit card to user
             userOptional.setCreditCard(creditCard);
 
-            return creditCardRepo.save(creditCard);
+            // save credit card entity to database
+            creditCardRepo.save(creditCard);
+
+            // save the user with updated CC
+            userRepo.save(userOptional);
+            return creditCard;
         }
         else{
             throw new IllegalArgumentException("Invalid username or password");
         }
     }
+
 
 }
