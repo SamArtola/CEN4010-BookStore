@@ -3,6 +3,7 @@ package cen4010.bookstore.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -22,7 +23,6 @@ public class Book {
 
     private int copiesSold;
 
-    @Field("genres")
     private List<String> genres;
 
     @Field("averageRating")
@@ -42,8 +42,10 @@ public class Book {
 
     private String yearPublished;
 
-    public Book(){}
-    public Book(double AVGRating, Integer copiesSold, String description, String ISBN, double price, Publisher publisher, String title, String yearPublished, Author author,List<String> genres) {
+    public Book(){
+        this.author=null;
+    }
+    public Book(double AVGRating, Integer copiesSold, String description, String ISBN, double price, Publisher publisher, String title, String yearPublished, Author author, List<String> genres) {
         this.AVGRating = AVGRating;
         this.copiesSold = copiesSold;
         this.description = description;
