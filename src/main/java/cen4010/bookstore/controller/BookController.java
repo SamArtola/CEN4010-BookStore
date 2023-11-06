@@ -28,9 +28,9 @@ public class BookController {
     @GetMapping("/books")
     public ResponseEntity<List<Book>> getAllBooks() {
         List<Book> books = bookService.getAllBooks();
-        for (int i = 0; i < books.size(); i++) {
-            books.get(i).setPublisher(null);
-            books.get(i).setAuthor(null);
+        for (Book book:books) {
+            book.setPublisher(null);
+            book.setAuthor(null);
         }
         return ResponseEntity.ok().body(books);
     }
@@ -107,27 +107,43 @@ public class BookController {
         return new ResponseEntity<>("Discount applied successfully",HttpStatus.OK);
     }
 
-    @GetMapping("/books/{genre}")
+    @GetMapping("/books/Genre:{genre}")
     public ResponseEntity<List<Book>> getBooksByGenre(@PathVariable List<String> genre){
         List<Book> books = bookService.getBooksByGenre(genre);
+        for (Book book:books) {
+            book.setPublisher(null);
+            book.setAuthor(null);
+        }
         return new ResponseEntity<>(books,HttpStatus.OK);
     }
 
     @GetMapping("/books/TopSellers")
     public ResponseEntity<List<Book>> getTop10Books(){
         List<Book>books=bookService.getTop10BooksByCopiesSold();
+        for (Book book:books) {
+            book.setPublisher(null);
+            book.setAuthor(null);
+        }
         return new ResponseEntity<>(books,HttpStatus.OK);
     }
 
     @GetMapping("/books/{Genre}/TopRated")
     public ResponseEntity<List<Book>> getTopBooksByGenre(@PathVariable List<String> Genre){
         List<Book> books = bookService.getTopBooksByGenre(Genre);
+        for (Book book:books) {
+            book.setPublisher(null);
+            book.setAuthor(null);
+        }
         return new ResponseEntity<>(books,HttpStatus.OK);
     }
 
     @GetMapping("/books/Rating:{rating}")
     public ResponseEntity<List<Book>> getBooksByRating(@PathVariable double rating){
         List<Book> books = bookService.getBooksByRating(rating);
+        for (Book book:books) {
+            book.setPublisher(null);
+            book.setAuthor(null);
+        }
         return new ResponseEntity<>(books,HttpStatus.OK);
     }
 }
