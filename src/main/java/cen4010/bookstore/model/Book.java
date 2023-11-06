@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
+import org.springframework.data.mongodb.core.mapping.Field;
+
+import java.util.List;
 
 
 @Document("book")
@@ -14,35 +17,44 @@ public class Book {
     @Id
     private String id;
 
-    private Double AVG_Rating;
+    @Field("title")
+    private String title;
+
+    private int copiesSold;
+
+    @Field("genres")
+    private List<String> genres;
+
+    @Field("averageRating")
+    private double AVGRating;
+
+    private String description;
+
+    private double price;
+
+    private String ISBN;
+
     @DocumentReference(lazy = true)
     private Author author;
-//    private List<C> comments;
-    private Integer copiesSoled;
-    private String description;
-//    private <G> genres;
-    private String ISBN;
-    private Double price;
-
 //    @DocumentReference(lazy = true)
     @DocumentReference(lazy = true)
     private Publisher publisher;
-    private String title;
+
     private String yearPublished;
 
 
-    public Book() {
-    }
-
-    public Book(Double AVG_Rating, Integer copiesSoled, String description, String ISBN, Double price, Publisher publisher, String title, String yearPublished) {
-        this.AVG_Rating = AVG_Rating;
-        this.copiesSoled = copiesSoled;
+    public Book(Double AVGRating, Integer copiesSold, String description, String ISBN, Double price, Publisher publisher, String title, String yearPublished, Author author,List<String> genres) {
+        this.AVGRating = AVGRating;
+        this.copiesSoled = copiesSold;
         this.description = description;
         this.ISBN = ISBN;
         this.price = price;
         this.publisher = publisher;
+        this.author=author;
         this.title = title;
         this.yearPublished = yearPublished;
+        this.genres=genres
+
     }
 
     public String getId() {
@@ -62,19 +74,19 @@ public class Book {
     }
 
     public Double getAVG_Rating() {
-        return AVG_Rating;
+        return AVGRating;
     }
 
-    public void setAVG_Rating(Double AVG_Rating) {
-        this.AVG_Rating = AVG_Rating;
+    public void setAVGRating(Double AVGRating) {
+        this.AVGRating = AVGRating;
     }
 
-    public Integer getCopiesSoled() {
-        return copiesSoled;
+    public Integer getCopiesSold() {
+        return copiesSold;
     }
 
-    public void setCopiesSoled(Integer copiesSoled) {
-        this.copiesSoled = copiesSoled;
+    public void setCopiesSold(Integer copiesSold) {
+        this.copiesSold = copiesSold;
     }
 
     public String getDescription() {
@@ -124,6 +136,15 @@ public class Book {
     public void setYearPublished(String yearPublished) {
         this.yearPublished = yearPublished;
     }
+
+    public void setGenres(List<String> genres) {
+        this.genres = genres;
+    }
+
+    public List<String> getGenres() {
+        return genres;
+    }
+
 
     @Override
     public String toString() {

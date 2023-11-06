@@ -6,7 +6,11 @@ import cen4010.bookstore.model.Publisher;
 import cen4010.bookstore.repo.AuthorRepository;
 import cen4010.bookstore.repo.PublisherRepository;
 import cen4010.bookstore.service.BookService;
+import com.geektext.bookbrowsing.Service.BookService;
+import com.geektext.bookbrowsing.model.Book;
+import com.geektext.bookbrowsing.model.DiscountRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -96,5 +100,41 @@ public class BookController {
         }
         else
             return ResponseEntity.ok().body(new ArrayList<>());
+    }
+
+    @Autowired BookController(BookService bookService){
+        this.bookService=bookService;
+    }
+
+    @PatchMapping("/books/discount")
+    public ResponseEntity<String> applyDiscount(@RequestBody DiscountRequest discountRequest){
+        String publisher=discountRequest.getPublisher();
+        double discountPercent=discountRequest.getDiscountPercent();
+        bookService.applyDiscountByPublisher(publisher,discountPercent);
+        return new ResponseEntity<>("Discount applied successfully",HttpStatus.OK);
+    }
+
+    @GetMapping("/books/{genre}")
+    public ResponseEntity<List<Book>> getBooksByGenre(@PathVariable List<String> genre){
+        List<Book> books = bookService.getBooksByGenre(genre);
+        return new ResponseEntity<>(books,HttpStatus.OK);
+    }
+
+    @GetMapping("/books/TopSellers")
+    public ResponseEntity<List<Book>> getTop10Books(){
+        List<Book>books=bookService.getTop10BooksByCopiesSold();
+        return new ResponseEntity<>(books,HttpStatus.OK);
+    }
+
+    @GetMapping("/books/{Genre}/TopRated")
+    public ResponseEntity<List<Book>> getTopBooksByGenre(@PathVariable List<String> Genre){
+        List<Book> books = bookService.getTopBooksByGenre(Genre);
+        return new ResponseEntity<>(books,HttpStatus.OK);
+    }
+
+    @GetMapping("/books/Rating:{rating}")
+    public ResponseEntity<List<Book>> getBooksByRating(@PathVariable double rating){
+        List<Book> books = bookService.getBooksByRating(rating);
+        return new ResponseEntity<>(books,HttpStatus.OK);
     }
 }
