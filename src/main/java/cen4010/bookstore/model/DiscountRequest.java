@@ -1,4 +1,4 @@
-package com.geektext.bookbrowsing.model;
+package cen4010.bookstore.model;
 
 public class DiscountRequest {
     private String publisher;

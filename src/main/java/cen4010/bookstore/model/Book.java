@@ -42,10 +42,10 @@ public class Book {
 
     private String yearPublished;
 
-
-    public Book(Double AVGRating, Integer copiesSold, String description, String ISBN, Double price, Publisher publisher, String title, String yearPublished, Author author,List<String> genres) {
+    public Book(){}
+    public Book(double AVGRating, Integer copiesSold, String description, String ISBN, double price, Publisher publisher, String title, String yearPublished, Author author,List<String> genres) {
         this.AVGRating = AVGRating;
-        this.copiesSoled = copiesSold;
+        this.copiesSold = copiesSold;
         this.description = description;
         this.ISBN = ISBN;
         this.price = price;
@@ -53,7 +53,7 @@ public class Book {
         this.author=author;
         this.title = title;
         this.yearPublished = yearPublished;
-        this.genres=genres
+        this.genres=genres;
 
     }
 
@@ -73,11 +73,11 @@ public class Book {
         this.author = author;
     }
 
-    public Double getAVG_Rating() {
+    public double getAVGRating() {
         return AVGRating;
     }
 
-    public void setAVGRating(Double AVGRating) {
+    public void setAVGRating(double AVGRating) {
         this.AVGRating = AVGRating;
     }
 
@@ -105,11 +105,11 @@ public class Book {
         this.ISBN = ISBN;
     }
 
-    public Double getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -145,14 +145,4 @@ public class Book {
         return genres;
     }
 
-
-    @Override
-    public String toString() {
-        return "Book{" +
-                "id='" + id + '\'' +
-                ", ISBN='" + ISBN + '\'' +
-                ", publisher=" + publisher +
-                ", title='" + title + '\'' +
-                '}';
-    }
 }

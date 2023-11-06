@@ -1,14 +1,11 @@
 package cen4010.bookstore.controller;
 
-import cen4010.bookstore.model.Author;
+import cen4010.bookstore.model.*;
 import cen4010.bookstore.model.Book;
 import cen4010.bookstore.model.Publisher;
 import cen4010.bookstore.repo.AuthorRepository;
 import cen4010.bookstore.repo.PublisherRepository;
 import cen4010.bookstore.service.BookService;
-import com.geektext.bookbrowsing.Service.BookService;
-import com.geektext.bookbrowsing.model.Book;
-import com.geektext.bookbrowsing.model.DiscountRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -102,15 +99,11 @@ public class BookController {
             return ResponseEntity.ok().body(new ArrayList<>());
     }
 
-    @Autowired BookController(BookService bookService){
-        this.bookService=bookService;
-    }
-
     @PatchMapping("/books/discount")
     public ResponseEntity<String> applyDiscount(@RequestBody DiscountRequest discountRequest){
-        String publisher=discountRequest.getPublisher();
-        double discountPercent=discountRequest.getDiscountPercent();
-        bookService.applyDiscountByPublisher(publisher,discountPercent);
+        Publisher publisher = pubRepo.findPublisherByName(discountRequest.getPublisher());
+        publisher.setDiscount(discountRequest.getDiscountPercent());
+        bookService.applyDiscountByPublisher(publisher);
         return new ResponseEntity<>("Discount applied successfully",HttpStatus.OK);
     }
 
