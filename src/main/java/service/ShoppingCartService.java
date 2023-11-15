@@ -1,7 +1,7 @@
 package service;
 
-import model.Books;
 import model.ShoppingCart;
+import model.Book;
 import lombok.NoArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
@@ -15,7 +15,7 @@ public interface ShoppingCartService {
 
     String save(ShoppingCart shoppingCart);
 
-    String add(Books books);
+    String add(Book books);
 
     List<ShoppingCart> findAll();
 

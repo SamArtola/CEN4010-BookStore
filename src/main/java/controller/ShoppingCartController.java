@@ -1,7 +1,7 @@
 package controller;
 
 import model.ShoppingCart;
-import model.Books;
+import model.Book;
 import repo.ShoppingCartRepository;
 import service.ShoppingCartService;
 import lombok.AllArgsConstructor;
@@ -33,8 +33,8 @@ public class ShoppingCartController {
     }
 
     @PostMapping("/addBookToCart")
-    public String addToCart(@RequestBody Books book) {
-        return shoppingCartService.add(new Books());
+    public String addToCart(@RequestBody Book book) {
+        return shoppingCartService.add(new Book());
     }
 
 

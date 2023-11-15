@@ -1,7 +1,7 @@
 package repo;
 
-import model.Books;
 import model.ShoppingCart;
+import model.Book;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,9 +9,9 @@ import java.util.List;
 
 @Repository
 public interface ShoppingCartRepository extends MongoRepository<ShoppingCart, String> {
-    Books insert(Books book);
+    Book insert(Book book);
     List<ShoppingCart> findAll();
-    Books deleteBookByIsbn(long isbn);
+    Book deleteBookByIsbn(long isbn);
 
 }
 

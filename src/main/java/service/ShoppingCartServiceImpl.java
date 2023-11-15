@@ -1,7 +1,7 @@
 package service;
 
-import model.Books;
 import model.ShoppingCart;
+import model.Book;
 import repo.ShoppingCartRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @Service
-public class ShoppingCartServiceImpl extends Books implements ShoppingCartService {
+public class ShoppingCartServiceImpl extends Book implements ShoppingCartService {
 
     @Autowired
     private ShoppingCartRepository repository;
@@ -23,7 +23,7 @@ public class ShoppingCartServiceImpl extends Books implements ShoppingCartServic
     }
 
     @Override
-    public String add(Books book) {
+    public String add(Book book) {
         repository.insert(book);
         return "Book added to Cart" + book.getBookId();
     }

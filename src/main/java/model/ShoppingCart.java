@@ -11,15 +11,15 @@ import java.util.List;
 
 @Document
 @Data
-public class ShoppingCart extends Books{
+public class ShoppingCart extends Book{
 
 
     private String userId;
-    private ArrayList<Books> shoppingCart;
+    private ArrayList<Book> shoppingCart;
 
 
 
-    public ShoppingCart( String userId, ArrayList<Books> shoppingCart) {
+    public ShoppingCart( String userId, ArrayList<Book> shoppingCart) {
         this.userId = userId;
         this.shoppingCart = shoppingCart;
     }
