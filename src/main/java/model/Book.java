@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @Document
-public class Books {
+public class Book {
 
     @Id
     private String bookId;
@@ -24,7 +24,8 @@ public class Books {
     private int copiesSold;
 
 
-    public Books(long isbn,
+
+    public Book(long isbn,
                 String title,
                 double rating,
                 String genre,
@@ -51,7 +52,7 @@ public class Books {
 
     }
 
-    public Books() {
+    public Book() {
 
     }
 }
